@@ -17,7 +17,7 @@ local ATLuaClass = require("ATLuaClass.init")
 
 Developer
 ----
-Howon Lee (a.k.a hoyo321 or kck4156 or airtaxi)
+Howon Lee (a.k.a hoyo321 or kck4156, airtaxi)
 
 License
 ----
