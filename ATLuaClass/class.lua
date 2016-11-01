@@ -11,6 +11,10 @@ local generateInstance = function(initInstance)
     function instance:tostring()
         return defaultMethods.tostring(self)
     end
+    
+    function instance:hashCode()
+        return defaultMethods.hashCode(self)
+    end
 end
 
 -- initalize instance (WIP)
@@ -28,6 +32,12 @@ end
 defaultMethods.toString = function(instance)
     return tostring(instance), getmetatable(instance);
 end
+
+-- defaultMethods.hashCode()
+-- arguments : none
+-- returns : Table fingerprint(table), Metatable fingerprint(table)
+-- returns fingerprint of instance and its metatable. (same as toString)
+defaultMethods.hashCode = defaultMethods.tostring
 
 -- All of the public methods are down below : 
 _M.init = init
