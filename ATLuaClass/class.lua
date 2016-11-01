@@ -22,7 +22,7 @@ end
 local init = function()
     local instance = {}
     
-    generateInstance(instance)
+    -- generateInstance(instance)
 end
 
 -- defaultMethods.tostring
