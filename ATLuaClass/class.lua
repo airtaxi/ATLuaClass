@@ -3,11 +3,6 @@ local _M = {}
 -- defaultMethods should be overrided when calling generateInstance.
 local defaultMethods = {}
 
--- initalize instance (WIP)
--- TODO : This method should call generateInstance(t) when it's ready to use.
-local init = function()
-    local instance = {}
-end
 
 local generateInstance = function(initInstance)
     -- Since instance system of lua 5.1 doesn't support iterating
@@ -18,6 +13,13 @@ local generateInstance = function(initInstance)
     end
 end
 
+-- initalize instance (WIP)
+-- TODO : This method should call generateInstance(t) when it's ready to use.
+local init = function()
+    local instance = {}
+    
+    generateInstance(instance)
+end
 
 -- defaultMethods.tostring
 -- arguments : none
