@@ -4,7 +4,7 @@ package.path = package.path .. ";../?.lua"
 -- since we added parent directory into package.path, we require "init" in this case.
 local ATLuaClass = require("init")
 
--- Class test case #1
+-- Class test case #1 : Test case for interaction between public method and private method  
 -- TODO: implement feature
 
 -- local ATLuaClass = require("ATLuaClass.init")
@@ -23,4 +23,3 @@ Math:addMethod({name="multiply", type="public", isAbstract=false}, function(this
 end)
 
 print(Math:multiply(5,3))
---> 15
