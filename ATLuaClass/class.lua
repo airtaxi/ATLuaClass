@@ -23,7 +23,7 @@ end
 
 -- initalize instance (WIP)
 -- TODO : This method should call generateInstance(t) when it's ready to use.
-local init = function(name)
+local init = function(name, option)
     local instance = {}
     instance._name = name
 
