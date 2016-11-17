@@ -23,3 +23,34 @@ Math:addMethod({name="multiply", type="public", isAbstract=false}, function(this
 end)
 
 print(Math:multiply(5,3))
+
+-- Class test case #2 : Test case for implementation of abstract method  
+-- TODO: implement feature
+
+-- Initialize abstract class.
+local Math = ATLuaClass.init("Math", {isAbstract = true})
+
+-- Attempt to add private abstract method.
+-- The code below should occurs an error because Java doesn't support private abstract method. 
+local isSuccess = pcall(function()
+    Math:addMethod({name="add", type="private", isAbstract=true})
+end)
+print("Adding private abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
+
+-- Attempt to add abstract method with method implemented. 
+-- The code below should occurs an error because Java doesn't support implemented abstract method.
+local isSuccess = pcall(function()
+    Math:addMethod({name="add", type="public", isAbstract=true}, function(this, a, b)
+        return a+b
+    end)
+end)
+
+print("Adding implemented abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
+
+-- Attempt to add normal abstract method.
+-- The code below should work as expected.
+local isSuccess = pcall(function()
+    Math:addMethod({name="add", type="public", isAbstract=true})
+end)
+
+print("Adding abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
