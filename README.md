@@ -13,7 +13,7 @@ local ATLuaClass = require("ATLuaClass.init")
 - Implement feature.
 
 ### Caution
-- This module work in progress. (this will deleted if this module would usable later)
+- This module is work in progress. (this will deleted if this module would usable later)
 
 Developer
 ----
