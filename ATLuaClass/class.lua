@@ -12,10 +12,6 @@ local generateInstance = function(instance)
         return defaultMethods.tostring(self)
     end
     
-    function instance:hashCode()
-        return defaultMethods.hashCode(self)
-    end
-    
     function instance:equals(object)
         return defaultMethods.equals(self, object)
     end
@@ -25,34 +21,9 @@ end
 -- TODO : This method should call generateInstance(t) when it's ready to use.
 local init = function(name, option)
     local instance = {}
-    local private = {}
-    local public = {}
-    instance._name = name
-	
-	option = option or {}
-	
-	assert(not (option.abstract and option.interface), "Argument has both abstract and interface. Please use one of them")
-	
-	local isInterface = option.interface
-	local isAbstract = option.abstract
-	
-	function instance:addMethod(args, var)
-		args.type = args.type or "public" -- assign default type
-		assert(not (args.type == "private" and args.abstract == true), "private abstract method isn't supported")
-		assert(not (args.abstract == true and type(var) ~= nil), "Abstract method cannot be implemented")
-		assert(not (isInterface and type(var) ~= nil), "(Interface Class) Abstract method cannot be implemented")
-		assert(type(args.name) ~= "name", "Method name should be a string. not " .. type(args.name))
-		instance[args.name] = var
-	end
-	
-	function instance:addVariable(args, var)
-		args.type = args.type or "public" -- assign default type
-		assert(not (args.type == "private" and args.abstract), "private abstract member variable isn't supported")
-		assert(not type(args.name) == "name", "Method name should be a string. not " .. type(args.name))
-		instance[args.name] = var
-	end
+    instance.__name = name
 
-    generateInstance(instance)
+    -- generateInstance(instance)
 	
 	return instance
 end
@@ -65,12 +36,6 @@ defaultMethods.toString = function(instance)
     return tostring(instance), getmetatable(instance);
 end
 
--- defaultMethods.hashCode()
--- arguments : none
--- returns : Table fingerprint(table), Metatable fingerprint(table)
--- returns fingerprint of instance and its metatable. (same as toString)
-defaultMethods.hashCode = defaultMethods.tostring
-
 -- defaultMethods.equals
 -- arguments : object(t)
 -- returns : isSame(boolean)
@@ -79,9 +44,9 @@ defaultMethods.hashCode = defaultMethods.tostring
 defaultMethods.equals = function(instance, object)
     --Check object is class table and make error if it's not class table. 
     assert(type(object) == "table", "attempt to compare (".. type(object)..") and (class table)")
-    assert(object._name ~= nil, "attempt to compare (non-class table) and (class table)")
+    assert(object.__name ~= nil, "attempt to compare (non-class table) and (class table)")
 
-    return (object._name == instance._name)
+    return (object.__name == instance.__name)
 end
 
 -- All of the public methods are down below : 
