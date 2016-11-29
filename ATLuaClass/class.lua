@@ -26,8 +26,29 @@ end
 local init = function(name, option)
     local instance = {}
     instance._name = name
+	
+	assert((option.abstract and option.interface), "Argument has both abstract and interface. Please use one of them")
+	
+	local isInterface = option.interface
+	local isAbstract = option.abstract
+	
+	function instance:addMethod(args, var)
+		args.type = args.type or "public" -- assign default type
+		assert(args.type == "private" and args.abstract, "private abstract method isn't supported")
+		assert(args.abstract and type(var) ~= nil, "Abstract method cannot be implemented")
+		assert((isInterface and type(var) ~= nil, "(Interface Class) Abstract method cannot be implemented")
+		assert(type(args.name) == "name", "Method name should be a string. not " .. type(args.name))
+		instance[args.name] = var
+	end
+	
+	function instance:addVariable(args, var)
+		args.type = args.type or "public" -- assign default type
+		assert(args.type == "private" and args.abstract, "private abstract member variable isn't supported")
+		assert(type(args.name) == "name", "Method name should be a string. not " .. type(args.name))
+		instance[args.name] = var
+	end
 
-    -- generateInstance(instance)
+    generateInstance(instance)
 end
 
 -- defaultMethods.tostring
@@ -51,8 +72,8 @@ defaultMethods.hashCode = defaultMethods.tostring
 -- else it returns false.
 defaultMethods.equals = function(instance, object)
     --Check object is class table and make error if it's not class table. 
-    assert(type(object) != "table", "attempt to compare (".. type(object)..") and (class table)")
-    assert(object._name != null, "attempt to compare (non-class table) and (class table)")
+    assert(type(object) ~= "table", "attempt to compare (".. type(object)..") and (class table)")
+    assert(object._name ~= nil, "attempt to compare (non-class table) and (class table)")
 
     return (object._name == instance._name)
 end
