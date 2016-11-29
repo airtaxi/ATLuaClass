@@ -3,11 +3,13 @@
 ATLuaClass is a Java type object-oriented class system module.
 
 #### USAGE
+
 ###### HOW TO IMPORT MODULE
 - Importing ATLuaClas is simple. The example code is down below : 
 ```lua
 local ATLuaClass = require("ATLuaClass.init")
 ```
+
 ###### HOW TO ADD METHOD
 - You should add 'self' parameter as first.
 - 'self' has same meaning as 'this' on Java (e.g Context)
@@ -18,6 +20,7 @@ Math:addMethod({name="add", type="private", isAbstract=false}, function(self, a,
 end)
 ```
 - As you can see, you can declare method as 'abstract method' by setting argument named 'isAbstract' to true
+
 ###### HOW TO ADD MEMBER VARIABLE
 - The example code is down below :  
 ```lua
