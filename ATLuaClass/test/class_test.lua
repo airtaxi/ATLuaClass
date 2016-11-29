@@ -9,6 +9,7 @@ local ATLuaClass = require("init")
 
 -- local ATLuaClass = require("ATLuaClass.init")
 local Math = ATLuaClass.init("Math")
+print("Test case #1 : Public/Private Class")
 
 Math:addMethod({name="add", type="private", isAbstract=false}, function(this, a, b)
     return a+b
@@ -26,6 +27,7 @@ print(Math:multiply(5,3))
 
 -- Class test case #2 : Test case for implementation of abstract method  
 -- TODO: implement feature
+print("Test case #2 : Abstract Class/Method")
 
 -- Initialize abstract class.
 local Math = ATLuaClass.init("Math", {isAbstract = true})
