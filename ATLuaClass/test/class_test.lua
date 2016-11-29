@@ -23,7 +23,8 @@ Math:addMethod({name="multiply", type="public", abstract=false}, function(self, 
     return returnVar
 end)
 
-print(Math:multiply(5,3))
+-- result : 15
+print("Math:multiply(5,3) result : " .. tostring(Math:multiply(5,3)))
 
 -- Class test case #2 : Test case for implementation of abstract method  
 -- TODO: implement feature
