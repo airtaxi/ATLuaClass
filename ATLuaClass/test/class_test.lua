@@ -17,7 +17,7 @@ end)
 
 Math:addMethod({name="multiply", type="public", abstract=false}, function(self, a, b)
     local returnVar = 0
-    for(i = 1, b, 1) do
+    for k = 1, b, 1 do
         returnVar = self.add(returnVar,a)
     end
     return returnVar
@@ -98,12 +98,12 @@ Math:addVariable({name="isActivated", type="private"}, false)
 Math:addMethod({name="on", type="public"}, function(self)
 	Math.isTurnOn = true -- Change public member variable.
 	self.isActivated = true -- Access to private member variable and change it.
-end})
+end)
 
 Math:addMethod({name="off", type="public"}, function(self)
 	Math.isTurnOn = false -- Change public member variable.
 	self.isActivated = false -- Access to private member variable and change it.
-end})
+end)
 
 Math:on()
 -- isTurnOn : true
