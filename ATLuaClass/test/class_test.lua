@@ -11,14 +11,14 @@ local ATLuaClass = require("init")
 local Math = ATLuaClass.init("Math")
 print("Test case #1 : Public/Private Class")
 
-Math:addMethod({name="add", type="private", isAbstract=false}, function(this, a, b)
+Math:addMethod({name="add", type="private", abstract=false}, function(self, a, b)
     return a+b
 end)
 
-Math:addMethod({name="multiply", type="public", isAbstract=false}, function(this, a, b)
+Math:addMethod({name="multiply", type="public", abstract=false}, function(self, a, b)
     local returnVar = 0
     for(i = 1, b, 1) do
-        returnVar = this.add(returnVar,a)
+        returnVar = self.add(returnVar,a)
     end
     return returnVar
 end)
@@ -30,19 +30,19 @@ print(Math:multiply(5,3))
 print("Test case #2 : Abstract Class/Method")
 
 -- Initialize abstract class.
-local Math = ATLuaClass.init("Math", {isAbstract = true})
+local Math = ATLuaClass.init("Math", {abstract = true})
 
 -- Attempt to add private abstract method.
 -- The code below should occurs an error because Java doesn't support private abstract method. 
 local isSuccess = pcall(function()
-    Math:addMethod({name="add", type="private", isAbstract=true})
+    Math:addMethod({name="add", type="private", abstract=true})
 end)
 print("Adding private abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
 
 -- Attempt to add abstract method with method implemented. 
 -- The code below should occurs an error because Java doesn't support implemented abstract method.
 local isSuccess = pcall(function()
-    Math:addMethod({name="add", type="public", isAbstract=true}, function(this, a, b)
+    Math:addMethod({name="add", type="public", abstract=true}, function(self, a, b)
         return a+b
     end)
 end)
@@ -52,7 +52,7 @@ print("Adding implemented abstract method " .. (isSuccess and "SUCCESS!" or "FAI
 -- Attempt to add normal abstract method.
 -- The code below should work as expected.
 local isSuccess = pcall(function()
-    Math:addMethod({name="add", type="public", isAbstract=true})
+    Math:addMethod({name="add", type="public", abstract=true})
 end)
 
 print("Adding abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
@@ -62,12 +62,12 @@ print("Adding abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
 print("Test case #3 : Interface")
 
 -- Initialize interface class.
-local Math = ATLuaClass.init("Math", {isInterface = true})
+local Math = ATLuaClass.init("Math", {interface = true})
 
 -- Attempt to add a method with fully implemented. 
 -- The code below should occurs an error because Interface doesn't allows to add normal method.
 local isSuccess = pcall(function()
-    Math:addMethod({name="add", type="public"}, function(this, a, b)
+    Math:addMethod({name="add", type="public"}, function(self, a, b)
         return a+b
     end)
 end)
@@ -78,7 +78,7 @@ print("Adding implemented abstract method " .. (isSuccess and "SUCCESS!" or "FAI
 -- The code below should work as expected.
 -- (Optional) Class type can be omitted.
 local isSuccess = pcall(function()
-    Math:addMethod({name="add", isAbstract=true})
+    Math:addMethod({name="add", abstract=true})
 end)
 
 print("Adding abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
@@ -94,14 +94,14 @@ local Math = ATLuaClass.init("Status")
 Math:addVariable({name="isTurnOn", type="public"}, false)
 Math:addVariable({name="isActivated", type="private"}, false)
 
-Math:addMethod({name="on", type="public"}, function(this)
+Math:addMethod({name="on", type="public"}, function(self)
 	Math.isTurnOn = true -- Change public member variable.
-	this.isActivated = true -- Access to private member variable and change it.
+	self.isActivated = true -- Access to private member variable and change it.
 end})
 
-Math:addMethod({name="off", type="public"}, function(this)
+Math:addMethod({name="off", type="public"}, function(self)
 	Math.isTurnOn = false -- Change public member variable.
-	this.isActivated = false -- Access to private member variable and change it.
+	self.isActivated = false -- Access to private member variable and change it.
 end})
 
 Math:on()
