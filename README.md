@@ -1,6 +1,6 @@
 # ATLuaClass
 
-ATLuaClass is a Java type object-oriented class system module.
+ATLuaClass is a object-oriented class system module.
 
 #### USAGE
 
