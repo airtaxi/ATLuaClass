@@ -64,27 +64,54 @@ print("Test case #3 : Interface")
 -- Initialize interface class.
 local Math = ATLuaClass.init("Math", {isInterface = true})
 
--- Attempt to add private abstract method.
--- The code below should occurs an error because Java doesn't support private abstract method. 
+-- Attempt to add a method with fully implemented. 
+-- The code below should occurs an error because Interface doesn't allows to add normal method.
 local isSuccess = pcall(function()
-    Math:addMethod({name="add", type="private", isAbstract=true})
-end)
-print("Adding private abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
-
--- Attempt to add abstract method with method implemented. 
--- The code below should occurs an error because Java doesn't support implemented abstract method.
-local isSuccess = pcall(function()
-    Math:addMethod({name="add", type="public", isAbstract=true}, function(this, a, b)
+    Math:addMethod({name="add", type="public"}, function(this, a, b)
         return a+b
     end)
 end)
 
 print("Adding implemented abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
 
--- Attempt to add normal abstract method.
+-- Attempt to add abstract method.
 -- The code below should work as expected.
+-- (Optional) Class type can be omitted.
 local isSuccess = pcall(function()
-    Math:addMethod({name="add", type="public", isAbstract=true})
+    Math:addMethod({name="add", isAbstract=true})
 end)
 
 print("Adding abstract method " .. (isSuccess and "SUCCESS!" or "FAILED!"))
+
+-- Class test case #4 : Test case for member variables.
+-- TODO: implement feature
+print("Test case #4 : Member variables")
+
+-- Initialize interface class.
+local Math = ATLuaClass.init("Status")
+
+-- Adding public and private member variables
+Math:addVariable({name="isTurnOn", type="public"}, false)
+Math:addVariable({name="isActivated", type="private"}, false)
+
+Math:addMethod({name="on", type="public"}, function(this)
+	Math.isTurnOn = true -- Change public member variable.
+	this.isActivated = true -- Access to private member variable and change it.
+end})
+
+Math:addMethod({name="off", type="public"}, function(this)
+	Math.isTurnOn = false -- Change public member variable.
+	this.isActivated = false -- Access to private member variable and change it.
+end})
+
+Math:on()
+-- isTurnOn : true
+print("isTurnOn : " .. tostring(Math.isTurnOn))
+-- the code below should prints "isActivated : nil" since it's private member variable
+print("isActivated : " .. tostring(Math.isActivated))
+
+Math:off()
+-- isTurnOn : false
+print("isTurnOn : " .. tostring(Math.isTurnOn))
+-- the code below should prints "isActivated : nil" since it's private member variable
+print("isActivated : " .. tostring(Math.isActivated))
