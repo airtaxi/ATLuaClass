@@ -4,6 +4,28 @@ package.path = package.path .. ";../?.lua"
 -- since we added parent directory into package.path, we require "class" in this case.
 local ATLuaClass = require("class")
 
+-- test case #1 : Create instance
+local Math = ATLuaClass.init("Math")
+
+function Math:add(a,b)
+    self.addCallTime = (self.addCallTime and self.addCallTime +1 or 1)  
+    return a+b
+end
+
+function Math:printAddCallTime()
+    print(self.addCallTime)
+end
+
+local instMath1 = Math.new()
+local instMath2 = Math.new()
+print(instMath1(3,9)) -- 12
+print(instMath2(8,31)) -- 39
+print(instMath2(12,27)) -- 39
+
+print(instMath1:printAddCallTime()) -- 1
+print(instMath1:printAddCallTime()) -- 2
+
+-- test case #2 : Using constructor
 local Math = ATLuaClass.init("Math", function(self, myString)
 	print("MyString = " .. tostring(myString))
 	self.myString = myString
@@ -18,11 +40,11 @@ function Math:printMyString()
 	print(self.myString)
 end
 
-local instanceMath = Math.new("abc")
-local instanceMath2 = Math.new("def")
+local instMath1 = Math.new("abc")
+local instMath2 = Math.new("def")
 
-print(instanceMath:add(3,5))
-print(instanceMath:printMyString())
+print(instMath1:add(3,5)) -- 8
+print(instMath1:printMyString()) -- abc
 
-print(instanceMath2:add(3,5))
-print(instanceMath2:printMyString())
+print(instMath2:add(3,5)) -- 8
+print(instMath2:printMyString()) -- def
