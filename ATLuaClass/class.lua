@@ -4,6 +4,10 @@ local _M = {}
 local instances = {}
 -- TODO : function named get, inherits
 
+local get = function(name)
+	return instances[name]
+end
+
 local init = function(name, arg)
 	-- TODO : implement inherit feature
 	local class = {}
