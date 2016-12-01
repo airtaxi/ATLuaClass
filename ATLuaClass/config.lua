@@ -1,5 +1,0 @@
-local config = {
-
-}
-
-return config
