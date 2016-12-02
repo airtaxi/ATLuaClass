@@ -8,10 +8,10 @@ local get = function(name)
 	return instances[name]
 end
 
-local init = function(name, arg)
+local init = function(name, arg, arg2)
 	-- TODO : implement inherit feature
 	local class = {}
-	local constructor
+	local constructor = arg2
 	if(type(arg) == "string") then
 		local inheritClass = instances[arg]
 		assert(inheritClass ~= nil, "ATLuaClass : inherit class should not be a nil value")
