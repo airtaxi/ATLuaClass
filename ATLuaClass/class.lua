@@ -2,7 +2,7 @@ local _M = {}
 
 
 local instances = {}
--- TODO : function named get, inherits
+-- TODO : function named inherits
 
 local get = function(name)
 	return instances[name]
@@ -38,6 +38,7 @@ local init = function(name, arg)
 end
 
 _M.init = init
+_M.get = get
 
 
 return _M
