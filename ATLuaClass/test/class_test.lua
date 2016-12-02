@@ -5,6 +5,7 @@ package.path = package.path .. ";../?.lua"
 local ATLuaClass = require("class")
 
 -- test case #1 : Create instance
+print("test case #1 : Create instance")
 local Math = ATLuaClass.init("Math")
 
 function Math:add(a,b)
@@ -18,16 +19,19 @@ end
 
 local instMath1 = Math.new()
 local instMath2 = Math.new()
-print(instMath1:add(3,9)) -- 12
-print(instMath2:add(8,31)) -- 39
-print(instMath2:add(12,27)) -- 39
+print("instMath1:add(3,9) = " .. tostring(instMath1:add(3,9))) -- 12
+print("instMath2:add(8,31) = " .. tostring(instMath2:add(8,31))) -- 39
+print("instMath2:add(12,27) = " .. tostring(instMath2:add(12,27))) -- 39
 
-print(instMath1:printAddCallTime()) -- 1
-print(instMath2:printAddCallTime()) -- 2
+print("instMath1:printAddCallTime()") -- 1
+instMath1:printAddCallTime()
+print("instMath1:printAddCallTime()") -- 2
+instMath2:printAddCallTime()
 
+print("")
 -- test case #2 : Using constructor
+print("test case #2 : Using constructor")
 local Math = ATLuaClass.init("Math", function(self, myString)
-	print("MyString = " .. tostring(myString))
 	self.myString = myString
 end)
 
@@ -43,8 +47,10 @@ end
 local instMath1 = Math.new("abc")
 local instMath2 = Math.new("def")
 
-print(instMath1:add(3,5)) -- 8
-print(instMath1:printMyString()) -- abc
+print("instMath1:add(3,5) = " .. tostring(instMath1:add(3,5))) -- 8
+print("instMath1:printMyString()") -- abc
+instMath1:printMyString()
 
-print(instMath2:add(3,5)) -- 8
-print(instMath2:printMyString()) -- def
+print("instMath2:add(3,5) = " .. tostring(instMath2:add(3,5))) -- 8
+print("instMath2:printMyString()") -- def
+instMath2:printMyString()
