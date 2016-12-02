@@ -37,12 +37,12 @@ end
 
 local instMath1 = Math.new()
 local instMath2 = Math.new()
-print(instMath1(3,9)) -- 12
-print(instMath2(8,31)) -- 39
-print(instMath2(12,27)) -- 39
+print(instMath1:add(3,9)) -- 12
+print(instMath2:add(8,31)) -- 39
+print(instMath2:add(12,27)) -- 39
 
 print(instMath1:printAddCallTime()) -- 1
-print(instMath1:printAddCallTime()) -- 2
+print(instMath2:printAddCallTime()) -- 2
 ```
 
 ###### HOW TO USE CONSTRUCTOR
