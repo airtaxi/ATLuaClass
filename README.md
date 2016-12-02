@@ -75,7 +75,7 @@ print(instMath2:printMyString()) -- def
 ```
 
 #### TODO
-- Implement inherit and get class feature.
+- Implement inherit feature.
 
 ### Caution
 - This module is work in progress. (this will deleted if this module would usable later)
