@@ -126,7 +126,7 @@ print(class2_2:getSelfVar()) -- def2
 
 Developer
 ----
-이호원 (Howon Lee) a.k.a hoyo321 or kck4156, airtaxi
+`이호원 (Howon Lee) a.k.a hoyo321 or kck4156, airtaxi`
 
 License
 ----
