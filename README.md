@@ -7,7 +7,7 @@ ATLuaClass is a object-oriented class system module.
 ###### HOW TO IMPORT MODULE
 - Importing ATLuaClass is simple. The example code is down below : 
 ```lua
-local ATLuaClass = require("ATLuaClass.init")
+local ATLuaClass = require("ATLuaClass.class")
 ```
 
 ###### HOW TO INITIALIZE CLASS
