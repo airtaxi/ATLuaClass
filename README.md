@@ -1,6 +1,7 @@
 # ATLuaClass
 
 ATLuaClass is a object-oriented class system module.
+ATLuaClass supports inheritance, creating instance, definition of class, private member variables.
 
 #### USAGE
 
