@@ -102,56 +102,53 @@ print(math2:multiply(2,5)) -- 10
 - You can declare a constructor when inherit a class by passing the constructor function to third argument.
 - The example code is down below :
 ```lua
-local Class = ATLuaClass.init("Class",function(self, var)
-	self.var = var or "foo"
-end)
-
-function Class:getSelfVar(a,b)
-	return self.var
-end
-
-local Class2 = ATLuaClass.init("Class2", "Class",function(self, var)
-	self.var = var or "bar"
-end)
-
-local class = Class.new()
-local class_2 = Class.new("foo2")
-local class2 = Class2.new()
-local class2_2 = Class2.new("bar2")
-
-print(class:getSelfVar()) -- abc
-print(class_2:getSelfVar()) -- abc2
-print(class2:getSelfVar()) -- def
-print(class2_2:getSelfVar()) -- def2
+  local Class = ATLuaClass.init("Class",function(self, var)
+  	self.var = var or "foo"
+  end)
+  
+  function Class:getSelfVar(a,b)
+  	return self.var
+  end
+  
+  local Class2 = ATLuaClass.init("Class2", "Class",function(self, var)
+  	self.var = var or "bar"
+  end)
+  
+  local class = Class.new()
+  local class_2 = Class.new("foo2")
+  local class2 = Class2.new()
+  local class2_2 = Class2.new("bar2")
+  
+  print(class:getSelfVar()) -- abc
+  print(class_2:getSelfVar()) -- abc2
+  print(class2:getSelfVar()) -- def
+  print(class2_2:getSelfVar()) -- def2
 ```
 
 ###### HOW TO USE PRIVATE MEMBER VARIABLES
 - Private member variables are only accesible on class methods.
-- You can declare private member variables by function of instance's setPrivate(name, var)
+- You can set/modify private member variables by function of instance's setPrivate(name, var)
 - Also you can access private member variable by function of instance's getPrivate(name)
 - The example code is down below :
 ```lua
-local Class = ATLuaClass.init("Class",function(self, var)
-	self.var = var or "foo"
-end)
+local ATLuaClass = require("class")
+print("test case #1 : Basic access of private member variable.")
+local TestClass = ATLuaClass.init("Class")
 
-function Class:getSelfVar(a,b)
-	return self.var
+function TestClass:addPrivate()
+	self.setPrivate("var1", 123)
+end
+function TestClass:getPrivateValue()
+	local retVar = self.getPrivate("var1")
+	return retVar
 end
 
-local Class2 = ATLuaClass.init("Class2", "Class",function(self, var)
-	self.var = var or "bar"
-end)
+local testClass = TestClass:new()
 
-local class = Class.new()
-local class_2 = Class.new("foo2")
-local class2 = Class2.new()
-local class2_2 = Class2.new("bar2")
+testClass:addPrivate()
 
-print(class:getSelfVar()) -- abc
-print(class_2:getSelfVar()) -- abc2
-print(class2:getSelfVar()) -- def
-print(class2_2:getSelfVar()) -- def2
+print(testClass.getPrivate("var1")) -- error 
+print(testClass:getPrivateValue()) -- 123
 ```
 
 Developer
