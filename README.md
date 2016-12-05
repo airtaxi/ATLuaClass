@@ -3,6 +3,15 @@
 ATLuaClass is a object-oriented class system module.
 ATLuaClass supports class inheritance, creating instance, definition of class, private member variables.
 
+#### FUNCTIONS
+- Class = ATLuaClass.init(className)
+- Class = ATLuaClass.init(className, constructor)
+- Class = ATLuaClass.init(className, inheritFrom)
+- Class = ATLuaClass.init(className, inheritFrom, constructor)
+- instance = Class.new()
+- instance.setPrivate(varName, value)
+- instance.getPrivate(varName)
+
 #### USAGE
 
 ###### HOW TO IMPORT MODULE
