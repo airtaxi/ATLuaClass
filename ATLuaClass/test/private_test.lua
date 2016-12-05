@@ -20,9 +20,6 @@ local testClass = TestClass:new()
 
 testClass:addPrivate()
 
-print(testClass.getPrivate("var1")) -- error
-print(testClass:getPrivateValue()) -- 123
-
 print("print(testClass.getPrivate(\"var1\")) => " ..
 ((select(1,pcall(function() print(testClass.getPrivate("var1")) end))) and "" or "Error"))
 
