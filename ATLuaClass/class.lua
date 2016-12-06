@@ -36,13 +36,13 @@ local init = function(name, arg, arg2)
 	instances[name] = class
 	
 	class.setPrivate = function(varName, varValue)
-		local from = debug.getinfo(2).name
+		local from = debug.getinfo(2).func
 		
 		assert(from ~= nil, "ATLuaClass : private value should be accessed from class methods")
 		local exists = false
 		for k,v in pairs(class) do
-			if type(k) == "string" and checkInnerFunc(k) ~= true then
-				if(from == k) then
+			if type(v) == "function" then
+				if(from == v) then
 					exists = true
 				end
 			end
@@ -55,13 +55,13 @@ local init = function(name, arg, arg2)
 	end
 	
 	class.getPrivate = function(varName, varValue)
-		local from = debug.getinfo(2).name
+		local from = debug.getinfo(2).func
 		
 		assert(from ~= nil, "ATLuaClass : private value should be accessed from class methods")
 		local exists = false
 		for k,v in pairs(class) do
-			if type(k) == "string" and checkInnerFunc(k) ~= true then
-				if(from == k) then
+			if type(v) == "function" then
+				if(from == v) then
 					exists = true
 				end
 			end
