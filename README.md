@@ -142,7 +142,7 @@ print(math2:multiply(2,5)) -- 10
 - The example code is down below :
 ```lua
 local ATLuaClass = require("class")
-print("test case #1 : Basic access of private member variable.")
+
 local TestClass = ATLuaClass.init("Class")
 
 function TestClass:addPrivate()
